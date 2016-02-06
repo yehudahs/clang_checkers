@@ -1,3 +1,9 @@
+to read when each checker runs read the next file:
+{source_dir}/tools/clang/include/clang/StaticAnalyzer/Core/CheckerManager.h
+
+in addition read about the state that sval can be tracked 
+{source_dir}/tools/clang/include/clang/StaticAnalyzer/Core/PathSensitive/SVals.h
+
 currently 
 - you need to have CC variable as your compiler (look at the makefile in the deadcode folder)
 - you can't run the eclipse makefile cause it has explicit use of gcc and not CC variable.
