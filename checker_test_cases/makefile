@@ -1,8 +1,10 @@
-CC=gcc
+CC:=../../../debug_llvm/bin/clang
 RM=rm -rf
+CFLAGS:=-S --analyze
 
 %.s: %.c
-	${CC} $< -S
+	${CC} ${CFLAGS} $< -o $@
 
 clean:
 	${RM} *.s
+	${RM} *.plist

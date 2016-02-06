@@ -5,3 +5,6 @@ currently
 to run static analysis on this folder file :
 -  /opt/yehudas/workspace/misc_utils/compiler/llvm/tools/clang/tools/scan-build/scan-build --use-analyzer=/opt/yehudas/workspace/misc_utils/compiler/build/bin/clang  make
 -  /opt/yehudas/workspace/misc_utils/compiler/llvm/tools/clang/tools/scan-view/scan-view /tmp/scan-build-2016-01-30-142326-42244-1
+
+to run the analyzer with the clang
+../../../debug_llvm/bin/clang --analyze ./test1.c -S
