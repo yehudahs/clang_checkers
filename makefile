@@ -19,21 +19,15 @@ check_configuration:
 		exit 1; \
         fi
 
-${LLVM_ORIG}: llvm.orig.tar.gz.aa llvm.orig.tar.gz.ab llvm.orig.tar.gz.ac llvm.orig.tar.gz.ad llvm.orig.tar.gz.ae llvm.orig.tar.gz.af llvm.orig.tar.gz.ag llvm.orig.tar.gz.ah llvm.orig.tar.gz.ai llvm.orig.tar.gz.aj
-	if [ ! -d ${LLVM_ORIG} ]; then \
-		cat llvm.orig.tar.gz.* > ${LLVM_ORIG}.tar.gz ; \
-		tar -zxvf ./llvm_orig.tar.gz ; \
-	fi
 
-
-${LLVM_SOURCE_FOLDER}: ${LLVM_ORIG} ${COMPILER_CHANGES_SOURCES}
+${LLVM_SOURCE_FOLDER}: ${COMPILER_CHANGES_SOURCES}
 	if [ ! -d ${LLVM_SOURCE_FOLDER} ]; then \
-		mkdir ${LLVM_SOURCE_FOLDER} ; \
+		echo "need source compiler in llvm folder"; \
+		exit 1; \
 	fi
-	rsync -acv ./${LLVM_ORIG}/* ./${LLVM_SOURCE_FOLDER}
-	rsync -acv ./${COMPILER_CHANGES_SOURCES}/* ./${LLVM_SOURCE_FOLDER}
+	rsync -acv ./${COMPILER_CHANGES_SOURCES}/ ./${LLVM_SOURCE_FOLDER}
 	
-
+	
 clang: check_configuration ${LLVM_SOURCE_FOLDER}
 	if [ ! -d ${BUILD_FOLDER} ]; then \
 		mkdir ${BUILD_FOLDER} ; \
@@ -44,5 +38,5 @@ install: clang
 	(cd build; sudo ${MAKE} install)
 	
 clean:
-	rm -rf ./build ./${LLVM_SOURCE_FOLDER}
+	rm -rf ./build ./${LLVM_SOURCE_FOLDER} ./${LLVM_ORIG}.tar.gz
 

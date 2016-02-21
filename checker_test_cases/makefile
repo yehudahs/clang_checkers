@@ -1,4 +1,4 @@
-CC:=../../../debug_llvm/bin/clang
+CC:=../../build/bin/clang
 RM=rm -rf
 CFLAGS:=-S --analyze
 

@@ -13,4 +13,15 @@ to run static analysis on this folder file :
 -  /opt/yehudas/workspace/misc_utils/compiler/llvm/tools/clang/tools/scan-view/scan-view /tmp/scan-build-2016-01-30-142326-42244-1
 
 to run the analyzer with the clang
-../../../debug_llvm/bin/clang --analyze ./test1.c -S
+../../build/bin/clang --analyze ./test1.c -S
+
+
+to run alpha checkers:
+../../build/bin/clang -cc1 ./test1.c -analyze -analyzer-checker=alpha.deadcode.UnreachableCode
+
+all checker can be found at:
+http://clang-analyzer.llvm.org/alpha_checks.html#deadcode_alpha_checkers
+
+
+the manual for writing a new checker is:
+http://clang-analyzer.llvm.org/checker_dev_manual.html
